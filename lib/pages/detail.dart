@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/foundation.dart';
 import '../models/news.dart';
+import 'package:intl/intl.dart';
 
 class Detail extends StatelessWidget {
   final Article sw;
@@ -148,6 +149,7 @@ class Detail extends StatelessWidget {
   }
 
   String _formatDate(DateTime date) {
-    return '${date.day}/${date.month}/${date.year} ${date.hour.toString().padLeft(2, '0')}:${date.minute.toString().padLeft(2, '0')}';
+    final wib = date.toUtc().add(const Duration(hours: 7));
+    return DateFormat('dd MMM yyyy • HH:mm', 'id').format(wib) + ' WIB';
   }
 }
